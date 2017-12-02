@@ -218,6 +218,8 @@ class Quaternion {
 
 @JS()
 class Face3 {
+	external Face3(int a, int b, int c);
+
 	external int get a;
 	external void set a(int a);
 
@@ -233,12 +235,24 @@ class Face3 {
 
 @JS()
 class Box2 {
+	external Box2(Vector2 min, Vector2 max);
+	factory Box2.zero() {
+		Vector2 v = new Vector2.zero();
+		return new Box2(v,v);
+	}
+
 	external Vector2 get min;
 	external Vector2 get max;
 }
 
 @JS()
 class Box3 {
+	external Box3(Vector3 min, Vector3 max);
+	factory Box3.zero() {
+		Vector3 v = new Vector3.zero();
+		return new Box3(v,v);
+	}
+
 	external Vector3 get min;
 	external Vector3 get max;
 	external bool intersectsBox(Box3 box);
@@ -395,10 +409,10 @@ class ShapeUtils {
 abstract class AbstractGeometry {}
 
 @JS()
-abstract class Geometry implements AbstractGeometry {
+class Geometry implements AbstractGeometry {
 	external JsArray<Vector3> get vertices;
 	external JsArray<Face3> get faces;
-	external JsArray<JsArray<Vector2>> get faceVertexUvs;
+	external JsArray<JsArray<JsArray<Vector2>>> get faceVertexUvs;
 
 	external void set dynamic(bool flag);
 
@@ -414,6 +428,7 @@ abstract class Geometry implements AbstractGeometry {
 	external void computeVertexNormals([bool areaWeighted]);
 	external void computeBoundingBox();
 	external void computeBoundingSphere();
+	external void computeCentroids();
 
 	external void dispose();
 }

@@ -6,7 +6,7 @@ abstract class Collider {
 	List<SpatialHashKey> spatialbuckets;
 	
 	Box3 getBounds() {
-		return new Box3()..setFromCenterAndSize(this.getPos(), new Vector3.all(this.getSize()*2.0));
+		return new Box3.zero()..setFromCenterAndSize(this.getPos(), new Vector3.all(this.getSize()*2.0));
 	}
 	
 	Vector3 getPos();

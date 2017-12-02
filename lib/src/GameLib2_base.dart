@@ -12,6 +12,9 @@ export "behaviours/collider.dart";
 export "behaviours/lifetime.dart";
 export "behaviours/mover.dart";
 
+export "tile/tileset.dart";
+export "tile/worldgrid.dart";
+
 export "loader/loader.dart";
 export "loader/resource.dart";
 

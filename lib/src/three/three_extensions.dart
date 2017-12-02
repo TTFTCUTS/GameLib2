@@ -7,6 +7,8 @@ import "../loader/loader.dart";
 import "../font/opentype.dart" as OT;
 import "three.dart";
 
+export "geometries/tilegridgeometry.dart";
+
 Future<ShaderMaterial> makeShaderMaterial(String vertexfile, String fragmentfile) async {
     List<String> programs = await Future.wait(<Future<String>>[
         Loader.getResource(vertexfile),
