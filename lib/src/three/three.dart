@@ -584,6 +584,9 @@ abstract class Material {
 
 	external bool get transparent;
 	external void set transparent(bool flag);
+
+	external bool get needsUpdate;
+	external void set needsUpdate(bool val);
 }
 
 @JS()
