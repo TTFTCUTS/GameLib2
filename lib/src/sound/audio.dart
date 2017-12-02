@@ -98,6 +98,7 @@ class AudioChannel {
     AudioChannel(String this.name, Audio this.system, [double defaultVolume = 1.0]) : volumeNode = system.ctx.createGain() {
         this.volumeNode.connectNode(system.volumeNode);
         volume = defaultVolume;
+        this.volumeNode.gain.value = volume;
     }
 
     Future<AudioBufferSourceNode> play(String soundname, [String subtitle]) async {
