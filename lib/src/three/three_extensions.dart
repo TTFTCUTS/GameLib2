@@ -139,3 +139,7 @@ void applyPathCommandToPath(Path shape, OT.PathCommand c) {
     }
 }
 
+Vector2 v3_xy(Vector3 v) => new Vector2(v.x,v.y);
+Vector2 v3_xz(Vector3 v) => new Vector2(v.x,v.z);
+Vector2 v3_yz(Vector3 v) => new Vector2(v.y,v.z);
+
