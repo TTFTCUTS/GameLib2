@@ -41,21 +41,21 @@ class Audio {
         channels[name] = new AudioChannel(name, this, defaultVolume);
     }
 
-    Future<AudioBufferSourceNode> iplay(String soundname, String channel, [String subtitle]) async {
+    Future<AudioBufferSourceNode> iplay(String soundname, String channel, {String subtitle, double pitchVar = 0.0}) async {
         if (channels.containsKey(channel)) {
-            return channels[channel].play(soundname, subtitle);
+            return channels[channel].play(soundname, subtitle: subtitle, pitchVar: pitchVar);
         }
         return null;
     }
 
-    Future<AudioBufferSourceNode> iplayRandom(List<String> soundnames, String channel, [List<String> subtitles]) async {
+    Future<AudioBufferSourceNode> iplayRandom(List<String> soundnames, String channel, {List<String> subtitles, double pitchVar = 0.0}) async {
         if (soundnames.length == 0) { return null; }
         if (subtitles == null) { subtitles = <String>[]; }
         if (soundnames.length < 2) {
-            return iplay(soundnames[0], channel, subtitles.length > 0 ? subtitles[0] : null);
+            return iplay(soundnames[0], channel, subtitle: subtitles.length > 0 ? subtitles[0] : null, pitchVar: pitchVar);
         } else {
             int n = rand.nextInt(soundnames.length);
-            return iplay(soundnames[n], channel, subtitles.length > n ? subtitles[n] : null);
+            return iplay(soundnames[n], channel, subtitle: subtitles.length > n ? subtitles[n] : null, pitchVar: pitchVar);
         }
     }
 
@@ -63,12 +63,12 @@ class Audio {
         return "$path/$name.$extension";
     }
 
-    static Future<AudioBufferSourceNode> play(String soundname, String channel, [String subtitle]) async {
-        return INSTANCE.iplay(soundname, channel, subtitle);
+    static Future<AudioBufferSourceNode> play(String soundname, String channel, {String subtitle, double pitchVar = 0.0}) async {
+        return INSTANCE.iplay(soundname, channel, subtitle: subtitle, pitchVar: pitchVar);
     }
 
-    static Future<AudioBufferSourceNode> playRandom(List<String> soundnames, String channel, [List<String> subtitles]) async {
-        return INSTANCE.iplayRandom(soundnames, channel, subtitles);
+    static Future<AudioBufferSourceNode> playRandom(List<String> soundnames, String channel, {List<String> subtitles, double pitchVar = 0.0}) async {
+        return INSTANCE.iplayRandom(soundnames, channel, subtitles: subtitles, pitchVar: pitchVar);
     }
 
     void displaySubtitle(String subtitle, num duration) {
@@ -101,15 +101,29 @@ class AudioChannel {
         this.volumeNode.gain.value = volume;
     }
 
-    Future<AudioBufferSourceNode> play(String soundname, [String subtitle]) async {
+    Future<AudioBufferSourceNode> play(String soundname, {String subtitle, double pitchVar = 0.0}) async {
         if (soundname == null) { return null; }
 
         AudioBuffer sound = await Loader.getResource(system.processSoundName(soundname));
 
         AudioBufferSourceNode node = system.ctx.createBufferSource()
             ..buffer = sound
-            ..connectNode(this.volumeNode)
-            ..start(0);
+            ..connectNode(volumeNode);
+
+        if (pitchVar > 0.0) {
+            double variance = system.rand.nextDouble() * pitchVar;
+
+            if (system.rand.nextBool()) {
+                // pitch up
+                node.playbackRate.value = 1.0 + variance;
+            } else {
+                // pitch down
+                node.playbackRate.value = 1.0 / (1.0 + variance);
+            }
+        }
+
+        node..start(0);
+
 
         if (subtitle != null) {
             system.displaySubtitle(subtitle, sound.duration);
