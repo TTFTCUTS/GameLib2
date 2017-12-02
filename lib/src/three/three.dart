@@ -40,14 +40,14 @@ class Vector2 {
 	}
 	external Vector2 set(num x, num y);
 
-	external void add(Vector2 v);
-	external void addScalar(num s);
-	external void sub(Vector2 v);
-	external void subScalar(num s);
-	external void multiply(Vector2 v);
-	external void multiplyScalar(num s);
-	external void divide(Vector2 v);
-	external void divideScalar(num s);
+	external Vector2 add(Vector2 v);
+	external Vector2 addScalar(num s);
+	external Vector2 sub(Vector2 v);
+	external Vector2 subScalar(num s);
+	external Vector2 multiply(Vector2 v);
+	external Vector2 multiplyScalar(num s);
+	external Vector2 divide(Vector2 v);
+	external Vector2 divideScalar(num s);
 
 	external num dot(Vector2 v);
 	external num length();
@@ -57,13 +57,13 @@ class Vector2 {
 	external num manhattanDistanceTo(Vector2 v);
 	external num distanceToSquared(Vector2 v);
 
-	external void max(Vector2 v);
-	external void min(Vector2 v);
-	external void rotateAround(Vector2 center, num angle);
+	external Vector2 max(Vector2 v);
+	external Vector2 min(Vector2 v);
+	external Vector2 rotateAround(Vector2 center, num angle);
 
 	external Vector2 clone();
-	external void copy(Vector2 v);
-	external void normalize();
+	external Vector2 copy(Vector2 v);
+	external Vector2 normalize();
 
 	external num get x;
 	external void set x(num x);
@@ -83,18 +83,18 @@ class Vector3 {
 	}
 	external Vector3 set(num x, num y, num z);
 
-	external void add(Vector3 v);
-	external void addScalar(num s);
-	external void sub(Vector3 v);
-	external void subScalar(num s);
-	external void multiply(Vector3 v);
-	external void multiplyScalar(num s);
-	external void divide(Vector3 v);
-	external void divideScalar(num s);
+	external Vector3 add(Vector3 v);
+	external Vector3 addScalar(num s);
+	external Vector3 sub(Vector3 v);
+	external Vector3 subScalar(num s);
+	external Vector3 multiply(Vector3 v);
+	external Vector3 multiplyScalar(num s);
+	external Vector3 divide(Vector3 v);
+	external Vector3 divideScalar(num s);
 
 	external num dot(Vector3 v);
 	external Vector3 cross(Vector3 v);
-	external void reflect(Vector3 normal);
+	external Vector3 reflect(Vector3 normal);
 	external num length();
 	external num manhattanLength();
 	external num lengthSq();
@@ -102,16 +102,16 @@ class Vector3 {
 	external num manhattanDistanceTo(Vector3 v);
 	external num distanceToSquared(Vector3 v);
 
-	external void max(Vector3 v);
-	external void min(Vector3 v);
-	external void applyQuaternion(Quaternion quaternion);
-	external void applyEuler(Euler euler);
+	external Vector3 max(Vector3 v);
+	external Vector3 min(Vector3 v);
+	external Vector3 applyQuaternion(Quaternion quaternion);
+	external Vector3 applyEuler(Euler euler);
 	external void project(Camera camera);
 	external void unproject(Camera camera);
 
 	external Vector3 clone();
-	external void copy(Vector3 v);
-	external void normalize();
+	external Vector3 copy(Vector3 v);
+	external Vector3 normalize();
 
 	external num get x;
 	external void set x(num x);
@@ -134,14 +134,14 @@ class Vector4 {
 	}
 	external Vector4 set(num x, num y, num z, num w);
 
-	external void add(Vector4 v);
-	external void addScalar(num s);
-	external void sub(Vector4 v);
-	external void subScalar(num s);
-	external void multiply(Vector4 v);
-	external void multiplyScalar(num s);
-	external void divide(Vector4 v);
-	external void divideScalar(num s);
+	external Vector4 add(Vector4 v);
+	external Vector4 addScalar(num s);
+	external Vector4 sub(Vector4 v);
+	external Vector4 subScalar(num s);
+	external Vector4 multiply(Vector4 v);
+	external Vector4 multiplyScalar(num s);
+	external Vector4 divide(Vector4 v);
+	external Vector4 divideScalar(num s);
 
 	external num dot(Vector4 v);
 	external num length();
@@ -151,14 +151,14 @@ class Vector4 {
 	external num manhattanDistanceTo(Vector4 v);
 	external num distanceToSquared(Vector4 v);
 
-	external void max(Vector4 v);
-	external void min(Vector4 v);
+	external Vector4 max(Vector4 v);
+	external Vector4 min(Vector4 v);
 	external void project(Camera camera);
 	external void unproject(Camera camera);
 
 	external Vector4 clone();
-	external void copy(Vector4 v);
-	external void normalize();
+	external Vector4 copy(Vector4 v);
+	external Vector4 normalize();
 
 	external num get x;
 	external void set x(num x);
