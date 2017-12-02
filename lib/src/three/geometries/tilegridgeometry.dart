@@ -13,8 +13,6 @@ abstract class TileGridGeometry {
         geo.faceVertexUvs[0].clear();
         geo.faces.clear();
 
-        print("verts pre: ${geo.vertices}");
-
         Map<String, int> vertmap = {};
 
         int tilesize = grid.tilesize;
@@ -51,8 +49,6 @@ abstract class TileGridGeometry {
         geo.verticesNeedUpdate = true;
         geo.elementsNeedUpdate = true;
         geo.uvsNeedUpdate = true;
-
-        print("verts post: ${geo.vertices}");
 
         return geo;
     }
