@@ -587,6 +587,9 @@ abstract class Material {
 
 	external bool get needsUpdate;
 	external void set needsUpdate(bool val);
+
+	external int get side;
+	external void set side(int val);
 }
 
 @JS()
