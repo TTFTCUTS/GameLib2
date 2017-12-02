@@ -5,7 +5,7 @@ import 'package:GameLib2/GameLib2.dart';
 
 main() async {
     new Audio("", querySelector("#subs"));
-    Audio.INSTANCE.createChannel("main");
+    Audio.INSTANCE.icreateChannel("main");
 
     await Loader.getResource(Audio.INSTANCE.processSoundName("boydhurt1"));
 

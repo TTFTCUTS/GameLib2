@@ -33,7 +33,7 @@ class Audio {
         INSTANCE = this;
     }
 
-    void createChannel(String name, [double defaultVolume = 1.0]) {
+    void icreateChannel(String name, [double defaultVolume = 1.0]) {
         if (channels.containsKey(name)) {
             throw "Audio channel already exists!";
         }
@@ -81,6 +81,10 @@ class Audio {
         this.subtitleElement.append(sub);
 
         new Timer(new Duration(milliseconds: ms), sub.remove);
+    }
+
+    static void createChannel(String name, [double defaultVolume = 1.0]) {
+        INSTANCE.icreateChannel(name, defaultVolume);
     }
 }
 
