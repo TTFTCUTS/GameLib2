@@ -195,6 +195,9 @@ class Quaternion {
 	factory Quaternion.identity() {
 		return new Quaternion(0,0,0,1);
 	}
+	factory Quaternion.fromEuler(Euler euler) {
+		return new Quaternion.identity()..setFromEuler(euler);
+	}
 
 	external void set(num x, num y, num z, num w);
 
