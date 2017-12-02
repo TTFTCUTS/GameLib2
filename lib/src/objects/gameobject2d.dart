@@ -16,7 +16,7 @@ class GameObject2D extends GameObject {
 	Vector2 getHeading() {
 		double x = sin(angle);
 		double y = cos(angle);
-		return new Vector2(x,y);
+		return new Vector2(x,-y);
 	}
 	
 	void setHeadingVec(Vector2 input) {
