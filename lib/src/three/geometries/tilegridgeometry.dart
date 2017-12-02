@@ -3,22 +3,23 @@ import "dart:math";
 import "../../GameLib2_base.dart";
 import "../three.dart";
 
-class TileGridGeometry extends Geometry {
-    int tilesize;
-    int width;
-    int height;
-
+abstract class TileGridGeometry {
     static Vector3 topnormal = new Vector3( 0.0, 0.0, 1.0 );
 
-    Map<String, int> vertmap = {};
-
     static Geometry create(WorldGrid grid, TileSet tileset, bool background) {
-        Geometry geo = new SphereGeometry(0.1);
+        Geometry geo = new PlaneGeometry(1,1,1,1);
 
-        print("verts: ${geo.vertices}");
-        /*this.tilesize = grid.tilesize;
-        this.width = grid.width;
-        this.height = grid.height;
+        geo.vertices.clear();
+        geo.faceVertexUvs[0].clear();
+        geo.faces.clear();
+
+        print("verts pre: ${geo.vertices}");
+
+        Map<String, int> vertmap = {};
+
+        int tilesize = grid.tilesize;
+        int width = grid.width;
+        int height = grid.height;
 
         List<TileType> tiles = background ? grid.backgroundTiles : grid.tiles;
 
@@ -38,7 +39,7 @@ class TileGridGeometry extends Geometry {
                         Box2 tt = tileset.tiles[tname];
 
                         if (tt != null) {
-                            this._maketile(x, y, tt);
+                            _maketile(geo, tilesize, vertmap, x, y, tt);
                         } else {
                             print("null aabb for $tname");
                         }
@@ -47,43 +48,44 @@ class TileGridGeometry extends Geometry {
             }
         }
 
-        this.uvsNeedUpdate = true;
-        this.elementsNeedUpdate = true;
+        geo.verticesNeedUpdate = true;
+        geo.elementsNeedUpdate = true;
+        geo.uvsNeedUpdate = true;
 
-        this.computeCentroids();*/
+        print("verts post: ${geo.vertices}");
 
         return geo;
     }
 
-    String _tileid(int x, int y) {
+    static String _tileid(int x, int y) {
         return "${x},${y}";
     }
 
-    void _maketile(int x, int y, Box2 uvbox) {
+    static void _maketile(Geometry geo, int tilesize, Map<String, int> vertmap, int x, int y, Box2 uvbox) {
         String idA = _tileid(x,y);
         String idB = _tileid(x,y+1);
         String idC = _tileid(x+1,y+1);
         String idD = _tileid(x+1,y);
 
         if (!vertmap.containsKey(idA)) {
-            Vector3 v = new Vector3((-(y)*this.tilesize).toDouble(), (-(x)*this.tilesize).toDouble(), 0.0);
-            vertmap[idA] = this.vertices.length;
-            this.vertices.add(v);
+            Vector3 v = new Vector3((-(y)*tilesize).toDouble(), (-(x)*tilesize).toDouble(), 0.0);
+            vertmap[idA] = geo.vertices.length;
+            geo.vertices.add(v);
         }
         if (!vertmap.containsKey(idB)) {
-            Vector3 v = new Vector3((-(y+1)*this.tilesize).toDouble(), (-(x)*this.tilesize).toDouble(), 0.0);
-            vertmap[idB] = this.vertices.length;
-            this.vertices.add(v);
+            Vector3 v = new Vector3((-(y+1)*tilesize).toDouble(), (-(x)*tilesize).toDouble(), 0.0);
+            vertmap[idB] = geo.vertices.length;
+            geo.vertices.add(v);
         }
         if (!vertmap.containsKey(idC)) {
-            Vector3 v = new Vector3((-(y+1)*this.tilesize).toDouble(), (-(x+1)*this.tilesize).toDouble(), 0.0);
-            vertmap[idC] = this.vertices.length;
-            this.vertices.add(v);
+            Vector3 v = new Vector3((-(y+1)*tilesize).toDouble(), (-(x+1)*tilesize).toDouble(), 0.0);
+            vertmap[idC] = geo.vertices.length;
+            geo.vertices.add(v);
         }
         if (!vertmap.containsKey(idD)) {
-            Vector3 v = new Vector3((-(y)*this.tilesize).toDouble(), (-(x+1)*this.tilesize).toDouble(), 0.0);
-            vertmap[idD] = this.vertices.length;
-            this.vertices.add(v);
+            Vector3 v = new Vector3((-(y)*tilesize).toDouble(), (-(x+1)*tilesize).toDouble(), 0.0);
+            vertmap[idD] = geo.vertices.length;
+            geo.vertices.add(v);
         }
 
         //Face4 face = new Face4(vertmap[idA], vertmap[idB], vertmap[idC], vertmap[idD]);
@@ -96,10 +98,10 @@ class TileGridGeometry extends Geometry {
         Face3 face2 = new Face3(vertmap[idA], vertmap[idB], vertmap[idC]);
         face2.normal = topnormal.clone();
 
-        this.faces.add(face1);
-        this.faces.add(face2);
+        geo.faces.add(face1);
+        geo.faces.add(face2);
 
-        List<List<Vector2>> faceVertexUV = faceVertexUvs[ 0 ];
+        List<List<Vector2>> faceVertexUV = geo.faceVertexUvs[ 0 ];
 
         {
             List<Vector2> newUVs = <Vector2>[];

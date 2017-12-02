@@ -38,6 +38,7 @@ class Vector2 {
 	factory Vector2.all(num n) {
 		return new Vector2(n,n);
 	}
+	external Vector2 set(num x, num y);
 
 	external void add(Vector2 v);
 	external void addScalar(num s);
@@ -80,6 +81,7 @@ class Vector3 {
 	factory Vector3.all(num n) {
 		return new Vector3(n,n,n);
 	}
+	external Vector3 set(num x, num y, num z);
 
 	external void add(Vector3 v);
 	external void addScalar(num s);
@@ -130,6 +132,7 @@ class Vector4 {
 	factory Vector4.all(num n) {
 		return new Vector4(n,n,n,n);
 	}
+	external Vector4 set(num x, num y, num z, num w);
 
 	external void add(Vector4 v);
 	external void addScalar(num s);
@@ -428,7 +431,6 @@ class Geometry implements AbstractGeometry {
 	external void computeVertexNormals([bool areaWeighted]);
 	external void computeBoundingBox();
 	external void computeBoundingSphere();
-	external void computeCentroids();
 
 	external void dispose();
 }

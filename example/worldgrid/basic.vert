@@ -1,5 +1,3 @@
-#version 120
-
 attribute vec3 aVertexPosition;
 attribute vec2 aTextureCoord;
 
