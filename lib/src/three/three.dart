@@ -177,7 +177,7 @@ class Vector4 {
 class Euler {
 	external Euler(num x, num y, num z, [String order]);
 
-	external void set(num x, num y, num z, [String order]);
+	external Euler set(num x, num y, num z, [String order]);
 
 	external num get x;
 	external void set x(num x);
@@ -199,15 +199,15 @@ class Quaternion {
 		return new Quaternion.identity()..setFromEuler(euler);
 	}
 
-	external void set(num x, num y, num z, num w);
+	external Quaternion set(num x, num y, num z, num w);
 
 	external Quaternion clone();
-	external void copy(Quaternion q);
+	external Quaternion copy(Quaternion q);
 
-	external void multiply(Quaternion q);
-	external void setFromAxisAngle(Vector3 axis, num angle);
-	external void setFromEuler(Euler euler);
-	external void setFromUnitVectors(Vector3 vFrom, Vector3 vTo);
+	external Quaternion multiply(Quaternion q);
+	external Quaternion setFromAxisAngle(Vector3 axis, num angle);
+	external Quaternion setFromEuler(Euler euler);
+	external Quaternion setFromUnitVectors(Vector3 vFrom, Vector3 vTo);
 
 	external num get x;
 	external void set x(num x);
@@ -263,7 +263,7 @@ class Box3 {
 	external Vector3 get max;
 	external bool intersectsBox(Box3 box);
 
-	external void setFromCenterAndSize(Vector3 center, Vector3 size);
+	external Box3 setFromCenterAndSize(Vector3 center, Vector3 size);
 }
 
 @JS()
