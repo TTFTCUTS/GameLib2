@@ -15,9 +15,9 @@ abstract class TileGridGeometry {
         //geo.vertices.length = 0;
         //geo.faceVertexUvs[0].length = 0;
         //geo.faces.length = 0;
-        JS.setProperty(geo.vertices, "length", 0);
-        JS.setProperty(geo.faceVertexUvs[0], "length", 0);
-        JS.setProperty(geo.faces, "length", 0);
+        //JS.setProperty(geo.vertices, "length", 0);
+        //JS.setProperty(geo.faceVertexUvs[0], "length", 0);
+        //JS.setProperty(geo.faces, "length", 0);
 
         Map<String, int> vertmap = {};
 
