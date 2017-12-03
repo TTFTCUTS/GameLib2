@@ -11,13 +11,9 @@ abstract class TileGridGeometry {
     static Geometry create(WorldGrid grid, TileSet tileset, bool background) {
         Geometry geo = new PlaneGeometry(1,1,1,1);
 
-        print(geo.vertices);
-        //geo.vertices.length = 0;
-        //geo.faceVertexUvs[0].length = 0;
-        //geo.faces.length = 0;
-        //JS.setProperty(geo.vertices, "length", 0);
-        //JS.setProperty(geo.faceVertexUvs[0], "length", 0);
-        //JS.setProperty(geo.faces, "length", 0);
+        geo.vertices.clear();
+        geo.faceVertexUvs[0].clear();
+        geo.faces.clear();
 
         Map<String, int> vertmap = {};
 
