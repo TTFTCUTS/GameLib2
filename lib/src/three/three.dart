@@ -248,6 +248,10 @@ class Box2 {
 
 	external Vector2 get min;
 	external Vector2 get max;
+
+	external Box2 expandByVector(Vector2 vector);
+	external Box2 expandByScalar(num amount);
+	external Box2 expandByPoint(Vector2 point);
 }
 
 @JS()
@@ -262,6 +266,10 @@ class Box3 {
 	external bool intersectsBox(Box3 box);
 
 	external Box3 setFromCenterAndSize(Vector3 center, Vector3 size);
+
+	external Box3 expandByVector(Vector3 vector);
+	external Box3 expandByScalar(num amount);
+	external Box3 expandByPoint(Vector3 point);
 }
 
 @JS()
