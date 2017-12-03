@@ -1,5 +1,7 @@
 import "dart:math";
 
+import "package:js/js_util.dart" as JS;
+
 import "../../GameLib2_base.dart";
 import "../three.dart";
 
@@ -10,9 +12,12 @@ abstract class TileGridGeometry {
         Geometry geo = new PlaneGeometry(1,1,1,1);
 
         print(geo.vertices);
-        geo.vertices.length = 0;
-        geo.faceVertexUvs[0].length = 0;
-        geo.faces.length = 0;
+        //geo.vertices.length = 0;
+        //geo.faceVertexUvs[0].length = 0;
+        //geo.faces.length = 0;
+        JS.setProperty(geo.vertices, "length", 0);
+        JS.setProperty(geo.faceVertexUvs[0], "length", 0);
+        JS.setProperty(geo.faces, "length", 0);
 
         Map<String, int> vertmap = {};
 
