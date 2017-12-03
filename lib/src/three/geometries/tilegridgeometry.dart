@@ -9,6 +9,7 @@ abstract class TileGridGeometry {
     static Geometry create(WorldGrid grid, TileSet tileset, bool background) {
         Geometry geo = new PlaneGeometry(1,1,1,1);
 
+        print(geo.vertices);
         geo.vertices.clear();
         geo.faceVertexUvs[0].clear();
         geo.faces.clear();
