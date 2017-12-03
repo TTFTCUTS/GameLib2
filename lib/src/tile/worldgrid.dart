@@ -46,10 +46,10 @@ class WorldGrid {
 		setTile(x,y, TileType.typesByName[name], bg);
 	}
 	
-	Future<Mesh> buildGeometry(String tileset, bool background, Texture texture, String vertexShaderPath, String fragmentShaderPath) async {
+	Future<Mesh> buildGeometry(String tileset, bool background, Texture texture, String vertexShaderPath, String fragmentShaderPath, [double backgroundBrightness = 0.4]) async {
 		ShaderMaterial mat = await makeShaderMaterial(vertexShaderPath, fragmentShaderPath);
 			//..depthWrite = false
-		setUniform(mat, "fLight", new ShaderUniform<double>(value: background ? 0.4 : 1.0));
+		setUniform(mat, "fLight", new ShaderUniform<double>(value: background ? backgroundBrightness : 1.0));
 		setUniform(mat, "vTint", new ShaderUniform<Vector3>(value: new Vector3.all(1.0)));
 		setUniform(mat, "tDiffuse", new ShaderUniform<TextureBase>(value: texture));
 		setUniform(mat, "vSprite", new ShaderUniform<Vector4>(value: new Vector4(0.0, 0.0, 1.0, 1.0)));
