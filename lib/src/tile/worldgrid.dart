@@ -5,6 +5,8 @@ import "../GameLib2_base.dart";
 import "../three/three.dart";
 
 class WorldGrid {
+	static TileType OOB = new TileType(-1, "out of bounds");
+
 	int width;
 	int height;
 	int tilesize;
@@ -63,7 +65,7 @@ class WorldGrid {
 		int i = index(x,y);
 		if (i == -1) { 
 			//print("$x,$y oob"); 
-			return null; 
+			return OOB;
 		}
 		
 		if (bg) {
@@ -296,6 +298,7 @@ class TileTypeConnected extends TileType {
 	bool ok(TileType t) {
 		//print(t == null ? "null" : t.name);
 		if (t == null) { return false; }
+		if (t == WorldGrid.OOB) { return true; }
 		return t == this || (this.connectTo != null && this.connectTo.contains(t.name));
 	}
 }
