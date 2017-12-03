@@ -243,8 +243,7 @@ class Face3 {
 class Box2 {
 	external Box2(Vector2 min, Vector2 max);
 	factory Box2.zero() {
-		Vector2 v = new Vector2.zero();
-		return new Box2(v,v);
+		return new Box2(new Vector2.zero(),new Vector2.zero());
 	}
 
 	external Vector2 get min;
@@ -255,8 +254,7 @@ class Box2 {
 class Box3 {
 	external Box3(Vector3 min, Vector3 max);
 	factory Box3.zero() {
-		Vector3 v = new Vector3.zero();
-		return new Box3(v,v);
+		return new Box3(new Vector3.zero(),new Vector3.zero());
 	}
 
 	external Vector3 get min;
