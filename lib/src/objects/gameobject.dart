@@ -25,7 +25,11 @@ class GameObject {
 	 */
 	void register(GameLogic game) {
 		this.game = game;
-		game.objects.add(this);
+		if (game.iteratingGameObjects) {
+			game.registryQueue.add(this);
+		} else {
+			game.objects.add(this);
+		}
 		if (this.model != null) {
 			game.render.scene.add(this.model);
 		}

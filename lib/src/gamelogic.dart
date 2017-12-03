@@ -8,13 +8,15 @@ class GameLogic {
 	Renderer render;
 	
 	List<GameObject> objects;
+	List<GameObject> registryQueue = <GameObject>[];
+	bool iteratingGameObjects = false;
 	SpatialHash collision;
 	
 	int windowWidth;
 	int windowHeight;
 	
 	bool stopLoop = false;
-	
+
 	GameLogic(DivElement this.container, int width, int height, [double gamesizex = 1000.0, double gamesizey = 1000.0, double gamesizez = 1000.0, double collisionsize = 30.0]) {
 		this.objects = new List<GameObject>();
 		
@@ -41,16 +43,19 @@ class GameLogic {
 			simtime -= simstep;
 			logicUpdate(simstep);
 		}
-		
+
+		iteratingGameObjects = true;
 		for (GameObject o in objects) {
 			o.updateGraphics(dt);
 		}
+		iteratingGameObjects = false;
 		
 		render.draw(dt);
 	}
 	
 	void logicUpdate(num dt) {
 		GameObject o;
+		iteratingGameObjects = true;
 		for (int i=0; i<objects.length; i++) {
 			o = objects[i];
 			if (!o.getDestroyed()) {
@@ -74,6 +79,11 @@ class GameLogic {
 					c.collide(other);
 				}
 			}
+		}
+		iteratingGameObjects = false;
+
+		while (registryQueue.isNotEmpty) {
+			this.objects.add(registryQueue.removeAt(0));
 		}
 	}
 
