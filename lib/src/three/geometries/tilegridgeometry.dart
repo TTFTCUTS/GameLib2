@@ -10,9 +10,9 @@ abstract class TileGridGeometry {
         Geometry geo = new PlaneGeometry(1,1,1,1);
 
         print(geo.vertices);
-        geo.vertices.clear();
-        geo.faceVertexUvs[0].clear();
-        geo.faces.clear();
+        geo.vertices.length = 0;
+        geo.faceVertexUvs[0].length = 0;
+        geo.faces.length = 0;
 
         Map<String, int> vertmap = {};
 
