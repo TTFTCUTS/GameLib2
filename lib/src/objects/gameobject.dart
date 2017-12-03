@@ -19,17 +19,22 @@ class GameObject {
 		rot = new Quaternion.identity();
 		scale = new Vector3.all(1.0);
 	}
-	
-	/**
-	 * Register object to a parent game and add it to relevant lists
-	 */
+
 	void register(GameLogic game) {
-		this.game = game;
 		if (game.iteratingGameObjects) {
 			game.registryQueue.add(this);
 		} else {
-			game.objects.add(this);
+			this.enterRegister(game);
 		}
+	}
+
+	/**
+	 * Register object to a parent game and add it to relevant lists
+	 * Not to be called directly
+	 */
+	void enterRegister(GameLogic game) {
+		this.game = game;
+		game.objects.add(this);
 		if (this.model != null) {
 			game.render.scene.add(this.model);
 		}

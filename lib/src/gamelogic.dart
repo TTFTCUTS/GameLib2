@@ -83,7 +83,7 @@ class GameLogic {
 		iteratingGameObjects = false;
 
 		while (registryQueue.isNotEmpty) {
-			this.objects.add(registryQueue.removeAt(0));
+			registryQueue.removeAt(0).enterRegister(this);
 		}
 	}
 
