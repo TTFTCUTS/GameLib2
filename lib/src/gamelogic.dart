@@ -98,6 +98,9 @@ class GameLogic {
     	window.requestAnimationFrame(gameLoop);
     	
     	num dt = now - then;
+    	if (then == 0) {
+    		dt = 0;
+	    }
     	then = now;
     	
     	frametimes.add(dt/1000.0);
